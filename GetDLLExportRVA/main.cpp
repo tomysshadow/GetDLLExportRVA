@@ -23,7 +23,9 @@ int main(int argc, char** argv) {
 	const char* procName = argv[2];
 
 	if (*procName == '#') {
-		procName = MAKEINTRESOURCEA(strtol(procName + 1, 0, 10));
+		unsigned long ordinal = strtoul(procName + 1, 0, 10);
+
+		procName = MAKEINTRESOURCEA(ordinal);
 	}
 
 	std::cout << std::showbase << std::hex << ((size_t)GetProcAddress(moduleHandle, procName) - (size_t)moduleHandle) << std::endl;
